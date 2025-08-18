@@ -1,0 +1,24 @@
+type NetInterface {
+  index: ID!
+  mtu: Int!
+  name: String!
+  hardwareAddr: String!
+  addrs: [Addr!]
+}
+
+type Addr {
+  network: String!
+  string: String!
+}
+
+type Query {
+  # Get a single network interface by name
+  netInterface(name: String!): NetInterface
+
+  # Get a single network interface by index
+  netInterfaceByIndex(id: ID!): NetInterface
+
+  netIfaces(pattern: String): [NetInterface!]!
+
+  addrsByIfaceIndex(ifid: ID!): [Addr!]
+}
